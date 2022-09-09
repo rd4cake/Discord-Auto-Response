@@ -6,8 +6,6 @@ import time
 import requests
 import openaiTEXT
 
-# /channels/937762787424342106/messages
-
 def send_json_request(ws, request):
     ws.send(json.dumps(request))
 
@@ -32,7 +30,7 @@ event = recieve_json_response(ws)
 heartbeat_interval = event['d']['heartbeat_interval'] / 1000
 threading._start_new_thread(heartbeat, (heartbeat_interval, ws))
 
-token = "OTM3NzYyNzg3NDI0MzQyMTA2.Yfge5A.BULdh0hgSfau0ZunWFLI9y7qRvo"
+token = "YOUR DISCOD TOKEN"
 
 payload = {
     'op' : 2,
@@ -53,9 +51,7 @@ while True:
     event = recieve_json_response(ws)
 
     try:
-        print(event)
-        # print(f"{event['d']['author']['username']} : {event['d']['content']}")
-        if event['d']['author']['username'] == "Basefade":
+        if event['d']['author']['username'] == "USERNAME OF OTHER PERSON":
             text+="You: " + event['d']['content']+'\n'
             respond = openaiTEXT.respond(text)
             respond = respond.replace("Friend:", "")
@@ -64,10 +60,10 @@ while True:
             }
             text+="Friend: "+respond+'\n'
             header = {
-                'authorization' : "MzE5OTQzODMxMzM4MzUyNjQx.YnF0ow.6I4BR874SUrxILmfLYWzzMoJH4U"
+                'authorization' : "AUTH KEY"
             }
             print(text)
-            r = requests.post("https://discord.com/api/v9/channels/887488982391332864/messages", data=payload, headers=header)
+            r = requests.post("DISCORD CHANNEL API", data=payload, headers=header)
 
         op_code = event('op')
         if op_code == 11:
