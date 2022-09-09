@@ -3,7 +3,7 @@ import openai
 
 
 def respond(text):
-    openai.api_key = "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"
+    openai.api_key = "YOUR API KEY"
 
     response = openai.Completion.create(
       engine="text-davinci-002",
